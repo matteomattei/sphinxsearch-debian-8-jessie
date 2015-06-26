@@ -1,15 +1,16 @@
 #!/bin/bash
 
 # Version
-VERSION="2.2.9"
+VERSION="2.2.9-release"
+#VERSION="2.3.1-beta"
 
 # install needed dependencies
 apt-get install -y libodbc1 unixodbc libpq5 libmysql++-dev libmysqlclient-dev checkinstall
 
 # Download sphinx and libstemmer_c
-wget http://sphinxsearch.com/files/sphinx-${VERSION}-release.tar.gz
-tar xzf sphinx-${VERSION}-release.tar.gz
-cd sphinx-${VERSION}-release/
+wget http://sphinxsearch.com/files/sphinx-${VERSION}.tar.gz
+tar xzf sphinx-${VERSION}.tar.gz
+cd sphinx-${VERSION}/
 wget http://snowball.tartarus.org/dist/libstemmer_c.tgz
 tar xvf libstemmer_c.tgz
 
@@ -26,4 +27,4 @@ cp *.deb ../
 
 # Cleanup
 cd ..
-rm -rf sphinx-${VERSION}-*
+rm -rf sphinx-${VERSION}*
