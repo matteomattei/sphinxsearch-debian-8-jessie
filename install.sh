@@ -22,8 +22,16 @@ cp -a ../etc .
 find etc > customfiles.txt
 checkinstall --include=customfiles.txt --pkgname=sphinxsearch --pkgversion=${VERSION} --maintainer=matteo.mattei@gmail.com --install=no --strip=yes -y
 
+# Configure and compile libsphinxclient
+cd api/libsphinxclient
+./configure --prefix=/usr && make
+
+# Create the deb
+checkinstall --pkgname=libsphinxclient --pkgversion=${VERSION} --maintainer=matteo.mattei@gmail.com --install=no --strip=yes -y
+
 # Copy deb file
-cp *.deb ../
+cd ../..
+find . -name '*.deb' -exec cp '{}' ../ \;
 
 # Cleanup
 cd ..
